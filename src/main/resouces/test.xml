@@ -1,0 +1,7 @@
+<note>
+    <to>George</to>
+    <from name ="yangxu">John</from>
+    <from>his</from>
+    <heading>Reminder</heading>
+    <body>Don't forget the meeting!</body>
+</note>
