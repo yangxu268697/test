@@ -1,0 +1,176 @@
+
+---------两数之和
+object Sum {
+    def twosum(num:Array[Int],target:Int): Array[Int] = {
+        val res:Array[Int] = new Array[Int](2)
+        for(i <- 0 to num.length-1)
+        {
+         for(j <- i+1 to num.length-1)
+            {
+           if(num(j)==target-num(i))
+                {
+              res(0)=i
+              res(1)=j
+              println(num(i),num(j))
+                }
+            }
+        }
+       return res  
+    }
+   def main(args:Array[String]): Unit = 
+            {
+            val str=Array(1,2,3,4,5,6,7,8,9,10);
+            twosum(str,11)
+            }
+             
+            
+}
+
+-------------二分法求值得小标
+object Solution {
+    def search(nums: Array[Int], target: Int): Int = {
+
+      var left = 0;
+      var right = nums.length - 1;
+      while (left <= right) {
+        var mid = left + (right - left) / 2;
+        if (nums(mid) == target) {
+          return mid;
+        }
+        else if (target < nums(mid)) {
+          right = mid - 1;
+
+        }
+        else {
+          left = mid + 1
+        }
+      }
+      return -1
+    }
+}
+----------插入求索引值
+def insert(nums: Array[Int], target: Int): Int ={
+     for(i <- 0 to nums.length-1)
+       {
+         while(nums(i)>=target)
+           {
+             return i
+           }
+       }
+     return nums.length
+ }
+ --------X的平方根
+ def sqrt(i:Int):Int ={
+  if(i==1||i==0)
+    {
+      return i;
+    }
+  var left=0;
+  var right=i;
+  while(1==1){
+    var mid=left+(right-left)/2;
+    if(left*left<=i && right*right>=i && (right-left)<=1 )
+      return mid
+    else
+      if(mid*mid>i)
+       {
+         right=mid
+       }
+    else
+      {
+        left=mid
+      }
+  }
+return i
+}
+---------pow(x,n)
+def myPow(x: Double, n: Int): Double = {
+    var i=x;
+    var N=n;
+    if(n<0)
+      {
+        i=1/x;
+        N= -n;
+      }
+    var res:Double=1;
+     for(q <- 1 to N)
+       {
+       res=res*i
+       }
+    return res
+ -------------排序算法
+ 排序名称 时间  空间
+ 冒泡排序 n平方  1
+ 快速排序 nlogn  logn
+ 插入排序 n平方   1
+ 插入排序 n平方   1
+ 归并排序 nlogn  n
+ -----quick
+ 
+ 
+ ---冒泡排序
+ def sort(list: List[Int]): List[Int] = list match {
+    case List() => List()
+    case head :: tail => compute(head, sort(tail))
+  }
+
+  def compute(data: Int, dataSet: List[Int]): List[Int] = dataSet match {
+    case List() => List(data)
+    case head :: tail =>
+    if (data <= head)
+     data :: dataSet
+    else
+     head :: compute(data, tail)
+  }
+
+def main(args: Array[String]) {
+    val list = List(3, 12, 43, 23, 7, 1, 2, 0)
+    println(sort(list))
+  }
+
+----归并排序
+def mergedSort[T](less: (T, T) => Boolean)(list: List[T]): List[T] = {
+
+    def merged(xList: List[T], yList: List[T]): List[T] = {
+      (xList, yList) match {
+        case (Nil, _) => yList
+        case (_, Nil) => xList
+        case (x :: xTail, y :: yTail) => {
+          if (less(x, y)) x :: merged(xTail, yList)
+          else
+            y :: merged(xList, yTail)
+        }
+      }
+    }
+
+    val n = list.length / 2
+    if (n == 0) list
+    else {
+      val (x, y) = list splitAt n
+      merged(mergedSort(less)(x), mergedSort(less)(y))
+    }
+  }
+
+def main(args: Array[String]) {
+    val list = List(3, 12, 43, 23, 7, 1, 2, 0)
+    println(mergedSort((x: Int, y: Int) => x < y)(list))
+  }
+  
+--------快速排序
+def quickSort(list: List[Int]): List[Int] = {
+    list match {
+      case Nil => Nil
+      case List() => List()
+      case head :: tail =>
+        val (left, right) = tail.partition(_ < head)
+        quickSort(left) ::: head :: quickSort(right)
+    }
+  }
+
+----------构造二叉树
+   def main(args:Array[String]):Unit = {
+      val datas = Array(1,2,10,6,8,7,9)
+      var root:TreeNode = null
+      for(item <- datas){
+        root = addTreeNode(root,item)
+      }
